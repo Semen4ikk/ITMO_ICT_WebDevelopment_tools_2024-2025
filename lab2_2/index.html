@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Лабораторная работа 2 - WEB-programming with Semen4ikk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u041b\u0430\u0431\u043e\u0440\u0430\u0442\u043e\u0440\u043d\u0430\u044f \u0440\u0430\u0431\u043e\u0442\u0430 2";
+        var mkdocs_page_input_path = "lab2_2.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> WEB-programming with Semen4ikk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/">первая лаба</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../lab2.md">models</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../lab1/">первая лаба</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">leetcodes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../leetcode/">leetcode</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">WEB-programming with Semen4ikk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Лабораторная работа 2</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="2">Лабораторная работа 2</h1>
+<h2 id="_1">Описание</h2>
+<p>Реализовать парсеры тремя разными подходами.</p>
+<h2 id="_2">Стек</h2>
+<ul>
+<li>Python</li>
+<li>asyncio</li>
+<li>threading</li>
+<li>multiprocessing</li>
+</ul>
+<h2 id="_3">Листинг</h2>
+<h3 id="asyncio_parsepy">asyncio_parse.py:</h3>
+<pre><code class="language-python">import asyncio
+import aiohttp
+from bs4 import BeautifulSoup
+from sqlmodel import Session
+
+from models import Page
+from connection import engine
+
+
+async def parse_and_save(url):
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, timeout=10) as response:
+                if response.status != 200:
+                    print(f&quot;Ошибка {response.status} для {url}&quot;)
+                    return {&quot;url&quot;: url, &quot;title&quot;: None}
+
+                html = await response.text()
+                bs = BeautifulSoup(html, &quot;html.parser&quot;)
+                title = bs.title.string if bs.title else None
+
+                # Сохраняем в БД
+                with Session(engine) as db:
+                    page = Page(url=url, title=title)
+                    db.add(page)
+                    db.commit()
+                    db.refresh(page)
+
+                return {&quot;url&quot;: url, &quot;title&quot;: title}
+    except Exception as e:
+        print(f&quot;Ошибка при парсинге {url}: {e}&quot;)
+        return {&quot;url&quot;: url, &quot;title&quot;: None}
+
+
+async def async_parse(urls: list[str]):
+    results = await asyncio.gather(*[parse_and_save(url) for url in urls])
+    return results
+</code></pre>
+<h3 id="multi_parsepy">multi_parse.py:</h3>
+<pre><code class="language-python">from multiprocessing import Pool
+import requests
+from bs4 import BeautifulSoup
+from sqlmodel import Session
+
+from connection import engine
+from models import Page
+
+
+def parse_and_save(url):
+    try:
+        result = requests.get(url, timeout=10)
+        result.raise_for_status()
+        html = result.text
+        bs = BeautifulSoup(html, &quot;html.parser&quot;)
+        title = bs.title.string if bs.title else bs.find(&quot;h1&quot;).text.strip() if bs.find(&quot;h1&quot;) else None
+    except Exception as e:
+        print(f&quot;Ошибка при парсинге {url}: {e}&quot;)
+        return
+
+    with Session(engine) as db:
+        page = Page(url=url, title=title)
+        db.add(page)
+        db.commit()
+        print(f&quot;Парсинг завершён: {url} | Заголовок: {title}&quot;)
+
+
+def multi_parse(urls, num_processes=4):
+    with Pool(num_processes) as pool:
+        pool.map(parse_and_save, urls)
+
+</code></pre>
+<h3 id="thread_parsepy">thread_parse.py:</h3>
+<pre><code class="language-python">import time
+import threading
+import requests
+from bs4 import BeautifulSoup
+from sqlmodel import Session
+
+from connection import engine
+from models import Page
+
+
+def parse_and_save(url):
+    try:
+        result = requests.get(url, timeout=10)
+        result.raise_for_status()
+        html = result.text
+        bs = BeautifulSoup(html, &quot;html.parser&quot;)
+        title = bs.title.string if bs.title else bs.find(&quot;h1&quot;).text.strip() if bs.find(&quot;h1&quot;) else None
+    except Exception as e:
+        print(f&quot;Ошибка при парсинге {url}: {e}&quot;)
+        return
+
+    with Session(engine) as db:
+        page = Page(url=url, title=title)
+        db.add(page)
+        db.commit()
+        print(f&quot;Парсинг завершён: {url} | Заголовок: {title}&quot;)
+
+
+def thread_parse(urls, num_threads=4):
+    threads = []
+    for i in range(num_threads):
+        chunk = urls[i::num_threads]
+        thread = threading.Thread(target=lambda urls_chunk: [parse_and_save(u) for u in urls_chunk], args=(chunk,))
+        threads.append(thread)
+        thread.start()
+
+    for t in threads:
+        t.join()
+</code></pre>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

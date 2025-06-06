@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>первая лаба - WEB-programming with Semen4ikk</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "\u043f\u0435\u0440\u0432\u0430\u044f \u043b\u0430\u0431\u0430";
+        var mkdocs_page_input_path = "lab1.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> WEB-programming with Semen4ikk
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">1 lab</span></p>
+              <ul>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">первая лаба</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Описание</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Стек</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Листинг</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#modelspy">models.py:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Модели:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#connection">Connection:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#main">Main:</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">2 lab</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="" href="../lab2.md">models</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">3 lab</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">первая лаба</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_1">Описание</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_2">Стек</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#_3">Листинг</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#modelspy">models.py:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_4">Модели:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#connection">Connection:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#main">Main:</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">leetcodes</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../leetcode/">leetcode</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">WEB-programming with Semen4ikk</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">3 lab</li>
+      <li class="breadcrumb-item active">первая лаба</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="1">Лабораторная 1</h1>
+<h2 id="_1">Описание</h2>
+<p>Реализовать крудс сервис на FastAPI.</p>
+<h2 id="_2">Стек</h2>
+<ul>
+<li>Python</li>
+<li>FastAPI</li>
+<li>sqlmodel</li>
+<li>pydantic</li>
+<li>alembic</li>
+</ul>
+<h2 id="_3">Листинг</h2>
+<h3 id="modelspy">models.py:</h3>
+<h3 id="_4">Модели:</h3>
+<pre><code class="language-python">from datetime import datetime, timezone
+from enum import Enum
+from typing import Optional, List
+
+from sqlmodel import SQLModel, Field, Relationship
+from sqlalchemy import Column, String, Integer, ForeignKey, JSON
+
+
+class Page(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    url: str = Field(sa_column=Column(String, nullable=False))
+    title: Optional[str] = None
+    parsed_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+
+class Role(str, Enum):
+    leader = &quot;leader&quot;
+    developer = &quot;developer&quot;
+    designer = &quot;designer&quot;
+    tester = &quot;tester&quot;
+
+
+class ParserTaskResponse(SQLModel):
+    task_id: str
+    url: str
+    status: str = &quot;Задача начата&quot;
+
+
+class User(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(sa_column=Column(String(100), nullable=False))
+    email: str = Field(sa_column=Column(String(100), unique=True, nullable=False))
+    phone: str = Field(sa_column=Column(String(20)))
+
+    teams: Optional[List[&quot;UserTeam&quot;]] = Relationship(back_populates=&quot;user&quot;)
+
+
+class Team(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str = Field(sa_column=Column(String(100), nullable=False))
+    description: str = Field(sa_column=Column(String))
+
+    users: Optional[List[&quot;UserTeam&quot;]] = Relationship(back_populates=&quot;team&quot;)
+    works: Optional[List[&quot;Work&quot;]] = Relationship(back_populates=&quot;team&quot;)
+
+
+class UserTeam(SQLModel, table=True):
+    user_id: Optional[int] = Field(
+        default=None,
+        foreign_key=&quot;user.id&quot;,
+        primary_key=True
+    )
+    team_id: Optional[int] = Field(
+        default=None,
+        foreign_key=&quot;team.id&quot;,
+        primary_key=True
+    )
+    role: Role = Field(sa_column=Column(String, nullable=False))
+
+    user: Optional[User] = Relationship(back_populates=&quot;teams&quot;)
+    team: Optional[Team] = Relationship(back_populates=&quot;users&quot;)
+
+
+class Task(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    description: str = Field(sa_column=Column(String))
+
+    requirements: List[str] = Field(sa_column=Column(JSON))  # Требования к задаче
+    evaluation_criteria: List[str] = Field(sa_column=Column(JSON))  # Критерии оценки
+
+    works: Optional[List[&quot;Work&quot;]] = Relationship(back_populates=&quot;task&quot;)
+
+
+class Work(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    task_id: Optional[int] = Field(default=None, foreign_key=&quot;task.id&quot;)
+    team_id: Optional[int] = Field(default=None, foreign_key=&quot;team.id&quot;)
+    file: str = Field(sa_column=Column(String))  # Ссылка на файл
+
+    task: Optional[Task] = Relationship(back_populates=&quot;works&quot;)
+    team: Optional[Team] = Relationship(back_populates=&quot;works&quot;)
+
+    evaluations: Optional[List[&quot;Evaluation&quot;]] = Relationship(back_populates=&quot;work&quot;)
+
+
+class Evaluation(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    work_id: Optional[int] = Field(default=None, foreign_key=&quot;work.id&quot;)
+    score: int = Field(sa_column=Column(Integer))
+    feedback: str = Field(sa_column=Column(String))
+
+    work: Optional[Work] = Relationship(back_populates=&quot;evaluations&quot;)
+
+
+class UserDefault(SQLModel):
+    name: str
+    email: str
+    phone: str
+
+
+class TeamDefault(SQLModel):
+    name: str
+    description: str
+
+
+class TaskDefault(SQLModel):
+    description: str
+    requirements: List[str]
+    evaluation_criteria: List[str]
+
+
+class WorkDefault(SQLModel):
+    task_id: int
+    team_id: int
+    file: str
+
+
+class EvaluationDefault(SQLModel):
+    work_id: int
+    score: int
+    feedback: str
+</code></pre>
+<h3 id="connection">Connection:</h3>
+<pre><code class="language-python">from sqlmodel import SQLModel, Session, create_engine
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+db_url = 'postgresql://postgres:postgres@db:5432/postgres'
+engine = create_engine(db_url, echo=False)
+engine_async = create_async_engine(db_url, echo=False)
+
+
+def init_db():
+    SQLModel.metadata.create_all(engine)
+
+
+def get_session():
+    with Session(engine) as session:
+        yield session
+</code></pre>
+<h3 id="main">Main:</h3>
+<pre><code class="language-python">from datetime import datetime
+
+from fastapi import FastAPI, Depends, HTTPException
+from pydantic import BaseModel
+from sqlmodel import Session, select
+from typing import List
+
+
+
+from models import Work, User, Task, Team
+from connection import get_session, init_db
+
+
+app = FastAPI()
+
+
+@app.on_event(&quot;startup&quot;)
+def on_startup():
+    init_db()
+
+
+
+class ParseRequest(BaseModel):
+    urls: List[str]
+
+
+@app.get(&quot;/users&quot;, response_model=List[User])
+def read_users(session: Session = Depends(get_session)):
+    return session.exec(select(User)).all()
+
+
+@app.get(&quot;/teams&quot;, response_model=List[Team])
+def get_teams(session: Session = Depends(get_session)):
+    return session.exec(select(Team)).all()
+
+
+@app.get(&quot;/tasks&quot;, response_model=List[Task])
+def get_tasks(session: Session = Depends(get_session)):
+    return session.exec(select(Task)).all()
+
+
+@app.get(&quot;/works&quot;, response_model=List[Work])
+def get_works(session: Session = Depends(get_session)):
+    return session.exec(select(Work)).all()
+
+
+@app.get(&quot;/user/{user_id}&quot;, response_model=User)
+def get_user(user_id: int, session: Session = Depends(get_session)):
+    user = session.get(User, user_id)
+    if not user:
+        raise HTTPException(status_code=404, detail=&quot;Пользователь не найден&quot;)
+    return user
+
+
+@app.get(&quot;/team/{team_id}&quot;, response_model=Team)
+def get_team(team_id: int, session: Session = Depends(get_session)):
+    team = session.get(Team, team_id)
+    if not team:
+        raise HTTPException(status_code=404, detail=&quot;Команда не найдена&quot;)
+    return team
+
+
+@app.get(&quot;/work/{work_id}&quot;, response_model=Work)
+def get_work(work_id: int, session: Session = Depends(get_session)):
+    work = session.get(Work, work_id)
+    if not work:
+        raise HTTPException(status_code=404, detail=&quot;Работа не найдена&quot;)
+    return work
+
+
+@app.get(&quot;/task/{task_id}&quot;, response_model=Task)
+def get_task(task_id: int, session: Session = Depends(get_session)):
+    task = session.get(Task, task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail=&quot;Задача не найдена&quot;)
+    return task
+
+
+
+from models import UserDefault, TeamDefault, TaskDefault, WorkDefault
+from typing import TypedDict
+
+
+class ResponseUser(TypedDict):
+    status: int
+    data: User
+
+
+@app.post(&quot;/user&quot;, response_model=ResponseUser)
+def create_user(user: UserDefault, session: Session = Depends(get_session)):
+    db_user = User(**user.model_dump())
+    session.add(db_user)
+    session.commit()
+    session.refresh(db_user)
+    return {&quot;status&quot;: 200, &quot;data&quot;: db_user}
+
+
+@app.post(&quot;/team&quot;, response_model=ResponseUser)
+def create_team(team: TeamDefault, session: Session = Depends(get_session)):
+    db_team = Team(**team.model_dump())
+    session.add(db_team)
+    session.commit()
+    session.refresh(db_team)
+    return {&quot;status&quot;: 200, &quot;data&quot;: db_team}
+
+
+@app.post(&quot;/work&quot;, response_model=ResponseUser)
+def create_work(work: WorkDefault, session: Session = Depends(get_session)):
+    db_work = Work(**work.model_dump())
+    session.add(db_work)
+    session.commit()
+    session.refresh(db_work)
+    return {&quot;status&quot;: 200, &quot;data&quot;: db_work}
+
+
+@app.post(&quot;/task&quot;, response_model=ResponseUser)
+def create_task(task: TaskDefault, session: Session = Depends(get_session)):
+    db_task = Task(**task.model_dump())
+    session.add(db_task)
+    session.commit()
+    session.refresh(db_task)
+    return {&quot;status&quot;: 200, &quot;data&quot;: db_task}
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="./" class="btn btn-neutral float-left" title="первая лаба"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../leetcode/" class="btn btn-neutral float-right" title="leetcode">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="./" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../leetcode/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
